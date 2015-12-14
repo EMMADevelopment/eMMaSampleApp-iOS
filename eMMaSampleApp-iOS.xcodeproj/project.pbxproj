@@ -51,6 +51,7 @@
 		3A129F331C1EF0000041E269 /* eMMaSampleApp-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "eMMaSampleApp-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A129F371C1EF0000041E269 /* eMMaSampleApp_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eMMaSampleApp_iOSUITests.m; sourceTree = "<group>"; };
 		3A129F391C1EF0000041E269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A129F451C1F2C780041E269 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				3A129F131C1EEFFF0041E269 /* main.m */,
+				3A129F451C1F2C780041E269 /* Resources.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -415,7 +417,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "eMMaSampleApp-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.emma.eMMaSampleApp-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = io.emma.emmasampleapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -426,7 +428,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "eMMaSampleApp-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.emma.eMMaSampleApp-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = io.emma.emmasampleapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
