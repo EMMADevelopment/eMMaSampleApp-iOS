@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Resources.h"
+#import "eMMa.h"
 
 @interface AppDelegate ()
 
@@ -18,7 +19,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [self addNavigationColor];
+    [self addNavigationStyle];
+    
+    //enable debug
+    [eMMa setDebuggerOutput: YES];
+    
+    //init session in eMMa
+    [eMMa starteMMaSession:@"emmasampleappJ2KIPmSms"];
+    
+    [self configureeMMaPush:launchOptions];
     
     return YES;
 }
@@ -45,9 +54,64 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
--(void) addNavigationColor{
-    [[UINavigationBar appearance] setBarTintColor: RGBCOLOR(20, 168, 7)];
+-(void) addNavigationStyle{
+    
+    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    [[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor: RGBCOLOR(20, 169, 9)];
     [[UINavigationBar appearance] setTranslucent:NO];
+}
+
+-(void) configureeMMaPush:(NSDictionary*) launchOptions{
+    
+    //enable/disable alert
+    [eMMa setPushSystemOptions:eMMaPushSystemDisableAlert];
+    
+    //enable push
+    [eMMa startPushSystem:launchOptions];
+    
+    //add push delegate
+    [eMMa setPushSystemDelegate:self];
+}
+
+-(void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [eMMa registerToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [eMMa handlePush:userInfo];
+}
+
+//If the iOS version is iOS 8 or later
+#ifdef __IPHONE_8_0
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    //register to receive notifications
+    [application registerForRemoteNotifications];
+}
+
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Error: %@", error);
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
+{
+    //handle the actions
+    if ([identifier isEqualToString:@"declineAction"]){
+    }
+    else if ([identifier isEqualToString:@"answerAction"]){
+    }
+}
+#endif
+
+-(void)pushTag:(NSString*)pushTag{
+    
+}
+
+-(void)pushMessage:(NSString*)pushMessage{
+    
 }
 
 @end

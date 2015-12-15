@@ -15,6 +15,9 @@
 		3A129F221C1EEFFF0041E269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A129F201C1EEFFF0041E269 /* LaunchScreen.storyboard */; };
 		3A129F2D1C1EF0000041E269 /* eMMaSampleApp_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A129F2C1C1EF0000041E269 /* eMMaSampleApp_iOSTests.m */; };
 		3A129F381C1EF0000041E269 /* eMMaSampleApp_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A129F371C1EF0000041E269 /* eMMaSampleApp_iOSUITests.m */; };
+		3AE274631C200F77006B4A3F /* eMMa-Universal-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AE274611C200F77006B4A3F /* eMMa-Universal-static.a */; };
+		3AE2746C1C207CDE006B4A3F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AE2746B1C207CDE006B4A3F /* AdSupport.framework */; };
+		3AE2746E1C207D27006B4A3F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AE2746D1C207D27006B4A3F /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,11 @@
 		3A129F371C1EF0000041E269 /* eMMaSampleApp_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eMMaSampleApp_iOSUITests.m; sourceTree = "<group>"; };
 		3A129F391C1EF0000041E269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A129F451C1F2C780041E269 /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
+		3AE274611C200F77006B4A3F /* eMMa-Universal-static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "eMMa-Universal-static.a"; sourceTree = "<group>"; };
+		3AE274681C200FF0006B4A3F /* eMMaDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eMMaDefines.h; sourceTree = "<group>"; };
+		3AE2746A1C201419006B4A3F /* eMMa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eMMa.h; sourceTree = "<group>"; };
+		3AE2746B1C207CDE006B4A3F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		3AE2746D1C207D27006B4A3F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AE2746E1C207D27006B4A3F /* CoreLocation.framework in Frameworks */,
+				3AE2746C1C207CDE006B4A3F /* AdSupport.framework in Frameworks */,
+				3AE274631C200F77006B4A3F /* eMMa-Universal-static.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +97,7 @@
 				3A129F2B1C1EF0000041E269 /* eMMaSampleApp-iOSTests */,
 				3A129F361C1EF0000041E269 /* eMMaSampleApp-iOSUITests */,
 				3A129F101C1EEFFF0041E269 /* Products */,
+				3AE2745F1C200AF0006B4A3F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +152,26 @@
 				3A129F391C1EF0000041E269 /* Info.plist */,
 			);
 			path = "eMMaSampleApp-iOSUITests";
+			sourceTree = "<group>";
+		};
+		3AE2745F1C200AF0006B4A3F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3AE2746D1C207D27006B4A3F /* CoreLocation.framework */,
+				3AE2746B1C207CDE006B4A3F /* AdSupport.framework */,
+				3AE274601C200F65006B4A3F /* eMMa SDK */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3AE274601C200F65006B4A3F /* eMMa SDK */ = {
+			isa = PBXGroup;
+			children = (
+				3AE2746A1C201419006B4A3F /* eMMa.h */,
+				3AE274681C200FF0006B4A3F /* eMMaDefines.h */,
+				3AE274611C200F77006B4A3F /* eMMa-Universal-static.a */,
+			);
+			name = "eMMa SDK";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,6 +381,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -393,6 +426,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -414,22 +448,36 @@
 		3A129F3D1C1EF0000041E269 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "eMMaSampleApp-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.emma.emmasampleapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		3A129F3E1C1EF0000041E269 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "eMMaSampleApp-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.emma.emmasampleapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -500,6 +548,7 @@
 				3A129F3E1C1EF0000041E269 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A129F3F1C1EF0000041E269 /* Build configuration list for PBXNativeTarget "eMMaSampleApp-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +557,7 @@
 				3A129F411C1EF0000041E269 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A129F421C1EF0000041E269 /* Build configuration list for PBXNativeTarget "eMMaSampleApp-iOSUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +566,7 @@
 				3A129F441C1EF0000041E269 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

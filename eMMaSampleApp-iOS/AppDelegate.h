@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "eMMa.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, eMMaPushDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
