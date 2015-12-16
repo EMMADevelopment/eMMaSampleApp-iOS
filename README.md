@@ -26,13 +26,13 @@ Add the following frameworks in Project if your app is iOS 7.0+:
 
 If you are using XCode7 to compile your app with iOS9, add App Transport Security and active NSAllowsArbitraryLoads in the Info.plis, in otherwise the app only support https url's.
 
-  ```xml
-  <key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
-    </dict>
-  ```
+```xml
+<key>NSAppTransportSecurity</key>
+  <dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+  </dict>
+```
 In the project (Build Settings, Build Options), disable BITCODE (ENABLE_BITCODE = NO).
 If you have problems running this lib you should delete all weak-links to libs. Also in Other Linker Flags, you should set the options -ObjC -all_load.
 
@@ -40,22 +40,22 @@ If you have problems running this lib you should delete all weak-links to libs. 
 
 eMMa needs start session in AppDelegate.m:
 
-  ```obj-c  
-  #import "AppDelegate.h"
-  #import "eMMa.h"
+```obj-c  
+#import "AppDelegate.h"
+#import "eMMa.h"
 
-  ...
+...
 
-  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-      //init session in eMMa
-      [eMMa starteMMaSession:@"emmasampleappJ2KIPmSms"];
+    //init session in eMMa
+    [eMMa starteMMaSession:@"emmasampleappJ2KIPmSms"];
 
-      ...
+    ...
 
-      return YES;
-  }
-  ```
+    return YES;
+}
+```
 You can enable the debug mode, before the start session (not enable by default):
 
   ```obj-c
@@ -66,80 +66,80 @@ You can enable the debug mode, before the start session (not enable by default):
 
 To receive Push in your app, you have to put the next methods in AppDelegate.m, after the session initialization:
 
-  ```obj-c  
-  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+```obj-c  
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-     ...
+   ...
 
-    /enable/disable alert
-    [eMMa setPushSystemOptions:eMMaPushSystemDisableAlert];
+  /enable/disable alert
+  [eMMa setPushSystemOptions:eMMaPushSystemDisableAlert];
 
-    //enable push
-    [eMMa startPushSystem:launchOptions];
+  //enable push
+  [eMMa startPushSystem:launchOptions];
 
-    return YES;
-  }
-  ```
+  return YES;
+}
+```
 
-  *setPushSystemOptions* allows enable/disable a native alert when notification arrives to device. This alert shows the text of message.
-  *startPushSystem* initializes internally the Push system. It allows easy management.
+*setPushSystemOptions* allows enable/disable a native alert when notification arrives to device. This alert shows the text of message.
+*startPushSystem* initializes internally the Push system. It allows easy management.
 
-  Also you must add the next methods:
+Also you must add the next methods:
 
-  ```obj-c
+```obj-c
 
-  -(void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-      [eMMa registerToken:deviceToken];
-  }
+-(void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [eMMa registerToken:deviceToken];
+}
 
-  - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-      [eMMa handlePush:userInfo];
-  }
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [eMMa handlePush:userInfo];
+}
 
-  //If the iOS version is iOS 8 or later
-  #ifdef __IPHONE_8_0
-  - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
-  {
-      //register to receive notifications
-      [application registerForRemoteNotifications];
-  }
+//If the iOS version is iOS 8 or later
+#ifdef __IPHONE_8_0
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    //register to receive notifications
+    [application registerForRemoteNotifications];
+}
 
-  -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-      NSLog(@"Error: %@", error);
-  }
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"Error: %@", error);
+}
 
-  - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
-  {
-      //handle the actions
-      if ([identifier isEqualToString:@"declineAction"]){
-      }
-      else if ([identifier isEqualToString:@"answerAction"]){
-      }
-  }
-  #endif
-  ```
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
+{
+    //handle the actions
+    if ([identifier isEqualToString:@"declineAction"]){
+    }
+    else if ([identifier isEqualToString:@"answerAction"]){
+    }
+}
+#endif
+```
 #### Optional
 
 You can use two methods if you want to control what you receive from Push. In AppDelegate.h declares the delegate:
 
-  ```obj-c
-  @interface AppDelegate : UIResponder <UIApplicationDelegate, eMMaPushDelegate>
+```obj-c
+@interface AppDelegate : UIResponder <UIApplicationDelegate, eMMaPushDelegate>
 
-  @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UIWindow *window;
 
-  @end
+@end
 
-  ```
+```
 Next, add the next methods to AppDelegate.m:
 
-  ```obj-c
-    -(void)pushTag:(NSString*)pushTag{
-      ...
-    }
+```obj-c
+  -(void)pushTag:(NSString*)pushTag{
+    ...
+  }
 
-    -(void)pushMessage:(NSString*)pushMessage{
-      ...
-    }
+  -(void)pushMessage:(NSString*)pushMessage{
+    ...
+  }
 ```
 
 *pushTag* sends the PushTag to the delegate when a Push is received. PushTag is optional in eMMa dashboard (Push panel).
