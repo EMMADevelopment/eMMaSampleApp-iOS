@@ -29,6 +29,8 @@
     
     [self configureeMMaPush:launchOptions];
     
+    [eMMa trackLocation];
+    
     return YES;
 }
 
